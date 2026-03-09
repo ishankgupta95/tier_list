@@ -6,9 +6,10 @@ type Props = {
   items: { id: string; name: string; tier?: string }[];
   onAddItem: (name: string) => void;
   onDelete: (id: string) => void;
+  onReset: () => void;
 };
 
-export const ItemList = ({ items, onAddItem, onDelete }: Props) => {
+export const ItemList = ({ items, onAddItem, onDelete, onReset }: Props) => {
   const { setNodeRef, isOver } = useDroppable({ id: "pool" });
   const [input, setInput] = useState("");
 
@@ -49,6 +50,7 @@ export const ItemList = ({ items, onAddItem, onDelete }: Props) => {
           onChange={(e) => setInput(e.target.value)}
         />
         <button className="add-item-btn" type="submit">Add</button>
+        <button className="reset-btn" type="button" onClick={onReset} disabled={items.length <= 0}>Reset</button>
       </form>
     </div>
   );

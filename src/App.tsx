@@ -44,7 +44,9 @@ function App() {
 
   return (
     <div className="app">
-      <h1 className="app-title">Tier List</h1>
+      <div className="app-header">
+        <h1 className="app-title">Tier List</h1>
+      </div>
       <DndContext onDragEnd={handleDragEnd}>
         <div className="tier-list-container">
           {TIER_CONFIG.map((tier) => (
@@ -61,6 +63,7 @@ function App() {
             items={items}
             onAddItem={handleAddItem}
             onDelete={handleDeleteItem}
+            onReset={() => setItems([])}
           />
         </div>
       </DndContext>
