@@ -39,16 +39,5 @@ npm run build
 
 Output is generated in the `dist/` folder, ready to deploy anywhere.
 
-## 🛠 Tech Stack
 
-- [React 18](https://react.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Vite](https://vitejs.dev/)
-
-## 📦 Deployment
-
-This app is a static build — deploy the `dist/` folder to any static host:
-
-- **Vercel** — connect the repo and deploy in one click
-- **Netlify** — same workflow, drag-and-drop the `dist/` folder or connect via Git
-- **GitHub Pages** — push the `dist/` folder to a `gh-pages` branch
+<img width="878" height="818" alt="Screenshot 2026-03-09 at 4 12 35 PM" src="https://github.com/user-attachments/assets/a5e9db15-f7ee-4d5e-a7ed-969576421a52" />
