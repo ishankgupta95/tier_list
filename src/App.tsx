@@ -13,15 +13,18 @@ const TIER_CONFIG = [
   { id: 'F', tierLabel: 'F', color: '#cb8cf8' },
 ];
 
+type Item = { id: string; name: string; tier?: string };
+
 function App() {
-  const [items, setItems] = useState([
-    { id: '1', name: 'Item 1' },
-    { id: '2', name: 'Item 2' },
-    { id: '3', name: 'Item 3' },
-    { id: '4', name: 'Item 4' },
-    { id: '5', name: 'Item 5' },
-    { id: '6', name: 'Item 6' },
-  ]);
+  const [items, setItems] = useState<Item[]>([]);
+
+  function handleAddItem(name: string) {
+    setItems((prev) => [...prev, { id: crypto.randomUUID(), name }]);
+  }
+
+  function handleDeleteItem(id: string) {
+    setItems((prev) => prev.filter((item) => item.id !== id));
+  }
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
@@ -45,11 +48,20 @@ function App() {
       <DndContext onDragEnd={handleDragEnd}>
         <div className="tier-list-container">
           {TIER_CONFIG.map((tier) => (
-            <TierList key={tier.id} tier={tier} items={items} />
+            <TierList
+              key={tier.id}
+              tier={tier}
+              items={items}
+              onDelete={handleDeleteItem}
+            />
           ))}
         </div>
         <div className="pool-container">
-          <ItemList items={items} />
+          <ItemList
+            items={items}
+            onAddItem={handleAddItem}
+            onDelete={handleDeleteItem}
+          />
         </div>
       </DndContext>
     </div>

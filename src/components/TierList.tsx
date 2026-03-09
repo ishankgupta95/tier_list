@@ -4,9 +4,10 @@ import { DraggableItem } from "./DraggableItem";
 type Props = {
   tier: { id: string; tierLabel: string; color: string };
   items: { id: string; name: string; tier?: string }[];
+  onDelete: (id: string) => void;
 };
 
-export const TierList = ({ tier, items }: Props) => {
+export const TierList = ({ tier, items, onDelete }: Props) => {
   const { setNodeRef, isOver } = useDroppable({ id: tier.id });
 
   const tierItems = items.filter((item) => item.tier === tier.tierLabel);
@@ -19,10 +20,10 @@ export const TierList = ({ tier, items }: Props) => {
       <div
         ref={setNodeRef}
         className="tier-items-wrapper"
-        style={{ backgroundColor: isOver ? "#d4d4d4" : "#2a2a2a" }}
+        style={{ backgroundColor: isOver ? "#3a3a3a" : "#2a2a2a" }}
       >
         {tierItems.map((item) => (
-          <DraggableItem key={item.id} item={item} />
+          <DraggableItem key={item.id} item={item} onDelete={onDelete} />
         ))}
       </div>
     </div>
